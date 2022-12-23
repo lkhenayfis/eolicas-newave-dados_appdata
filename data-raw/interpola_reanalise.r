@@ -3,7 +3,7 @@ library(data.table)
 
 source("R/utils.r")
 
-conn <- conectalocal("data/")
+conn <- conectalocal("./data/")
 
 usinas <- getusinas(conn)
 usinas <- usinas[!duplicated(id)]

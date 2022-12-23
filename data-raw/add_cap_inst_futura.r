@@ -62,8 +62,9 @@ cap_evol <- lapply(plans_existentes, function(subsist) {
 
     # add coisas que faltam pra bater com usinas
     plan[, subsistema := subsist]
-    plan[, codigo := formatC(seq(.N), width = 6, flag = "0")]
+    plan[, codigo := formatC(seq(.N), width = 6 - nchar(subsist), flag = "0")]
     plan[, codigo := gsub("0", "X", codigo)]
+    plan[, codigo := paste0(subsist, codigo)]
     plan[, nome := paste0("dummy_", formatC(seq(.N), width = 3, flag = "0"))]
     plan[, ceg := paste0("EOL.CV.", subsist, ".999999-9.", formatC(seq(.N), width = 2, flag = "0"))]
     plan[, estado := estado_aux[subsist]]
